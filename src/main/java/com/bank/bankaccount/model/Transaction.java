@@ -6,7 +6,6 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -35,37 +34,18 @@ public class Transaction extends AbstractAuditing implements Serializable {
     private String txnType;
 
     @Column(name = "amount")
-    private BigDecimal amount;
-
-    @Column(name = "total_amount")
-    private BigDecimal totalAmount;
+    private Double amount;
 
     @Column(name = "status")
     private String status;
-
-    @Column(name = "from_account_id")
-    private String fromAccountId;
-
-    @Column(name = "to_account_id")
-    private String toAccountId;
-
-    @Column(name = "from_customer_id")
-    private String fromCustomerId;
-
-    @Column(name = "to_customer_id")
-    private String toCustomerId;
 
     @NotNull
     @Column(name = "currency")
     private String currency;
 
-    @Column(name = "tax")
-    private BigDecimal tax;
-
-    @Column(name = "fee")
-    private BigDecimal fee;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Account fromAccount;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Account account;
-
+    private Account toAccount;
 }
