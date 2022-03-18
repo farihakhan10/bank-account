@@ -65,4 +65,7 @@ public class Transaction extends AbstractAuditing implements Serializable {
     @Column(name = "fee")
     private BigDecimal fee;
 
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Account account;
+
 }

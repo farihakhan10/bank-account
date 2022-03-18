@@ -8,10 +8,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @Builder(toBuilder = true)
 @AllArgsConstructor
@@ -47,6 +47,9 @@ public class Account extends AbstractAuditing implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @NotNull
     private Customer customer;
+
+    @OneToMany(mappedBy = "account")
+    private List<Transaction> transactions;
 
     @NotNull
     @Column(name="currency")
