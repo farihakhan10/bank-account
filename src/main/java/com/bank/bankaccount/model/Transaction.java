@@ -21,9 +21,6 @@ public class Transaction extends AbstractAuditing implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "txn_code")
-    private String txnCode;
-
     @Column(name = "txn_type")
     private String txnType;
 
