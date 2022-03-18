@@ -1,4 +1,4 @@
-package com.bank.bankaccount.entity;
+package com.bank.bankaccount.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-@Builder
+@Builder(toBuilder = true)
 @RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor

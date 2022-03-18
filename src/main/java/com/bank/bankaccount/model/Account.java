@@ -1,4 +1,4 @@
-package com.bank.bankaccount.entity;
+package com.bank.bankaccount.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -30,6 +30,9 @@ public class Account extends AbstractAuditing implements Serializable {
 
     @Column(name = "is_active")
     private Character isActive;
+
+    @Column(name = "title")
+    private String title;
 
     @Column(name = "iban")
     private String iBan;

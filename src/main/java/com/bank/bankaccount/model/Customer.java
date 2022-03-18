@@ -1,5 +1,6 @@
-package com.bank.bankaccount.entity;
+package com.bank.bankaccount.model;
 
+import com.bank.bankaccount.dto.CustomerDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -34,14 +35,8 @@ public class Customer extends AbstractAuditing implements Serializable {
     @Column(name = "email", length = 80)
     private String email;
 
-    @Column(name = "country_code")
-    private String countryCode;
-
     @Column(name = "mobile_no")
     private String mobileNo;
-
-    @Column(name = "customer_id")
-    private String customerId;
 
     @Size(min = 1, max = 1)
     @Column(name = "gender", length = 1)
@@ -56,4 +51,8 @@ public class Customer extends AbstractAuditing implements Serializable {
     @Column(name = "dob")
     private LocalDate dob;
 
+    public CustomerDTO toDTO() {
+        return new CustomerDTO().toBuilder().id(id).status(status).email(email).mobileNo(mobileNo)
+                .gender(gender).firstName(firstName).lastName(lastName).dob(dob).build();
+    }
 }

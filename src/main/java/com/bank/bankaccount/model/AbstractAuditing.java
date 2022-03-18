@@ -1,4 +1,4 @@
-package com.bank.bankaccount.entity;
+package com.bank.bankaccount.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
