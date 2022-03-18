@@ -1,9 +1,7 @@
 package com.bank.bankaccount.dto;
 
-import com.bank.bankaccount.model.Customer;
 import lombok.*;
 
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -14,12 +12,11 @@ public class AccountDTO {
 
     private Long id;
     private String accountType;
-    private Character isActive;
+    private Boolean isActive;
     private String title;
-    private String iBan;
     private String accountNo;
     private String status;
-    private Customer customer;
+    private Long customerId;
     private String currency;
-    private BigDecimal balance;
+    private Double balance;
 }

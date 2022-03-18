@@ -1,5 +1,6 @@
 package com.bank.bankaccount.model;
 
+import com.bank.bankaccount.dto.AccountDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
@@ -7,7 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Getter
@@ -33,10 +33,8 @@ public class Account extends AbstractAuditing implements Serializable {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "iban")
-    private String iBan;
-
     @Column(name="account_no")
+    @GeneratedValue
     private String accountNo;
 
     @NotNull
@@ -57,6 +55,11 @@ public class Account extends AbstractAuditing implements Serializable {
 
     @NotNull
     @Column(name="balance")
-    private BigDecimal balance;
+    private Double balance;
 
+    public AccountDTO toDTO() {
+        return new AccountDTO().toBuilder().accountNo(this.accountNo).accountType(this.accountType).balance(this.balance)
+                .currency(this.currency).isActive(this.isActive.equals('Y')).status(this.status).title(this.title)
+                .customerId(this.customer.getId()).build();
+    }
 }

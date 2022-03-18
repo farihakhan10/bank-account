@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 
 @Slf4j
 @RestController
@@ -22,7 +21,8 @@ public class AccountsController {
 
     @PostMapping("/accounts/current")
     public ResponseEntity<ApiResponse<AccountDTO>> createCurrentAccountByCustomerId (
-            @RequestParam("customerID") @NotNull Long customerID, @RequestParam("initialCredit") BigDecimal initialCredit) throws BankAccountCustomException {
+            @RequestParam("customerID") @NotNull Long customerID, @RequestParam("initialCredit") Double initialCredit)
+            throws BankAccountCustomException {
 
         return ResponseEntity.ok(new ApiResponse<>(null,
                 accountsService.createAccount(customerID, AccountTypes.CURRENT_ACCOUNT, initialCredit)));

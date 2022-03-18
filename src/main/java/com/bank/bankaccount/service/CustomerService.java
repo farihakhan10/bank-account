@@ -1,7 +1,7 @@
 package com.bank.bankaccount.service;
 
-import com.bank.bankaccount.dto.CustomerDTO;
+import com.bank.bankaccount.model.Customer;
 
 public interface CustomerService {
-    CustomerDTO getCustomerById(Long customerId);
+    Customer getCustomerById(Long customerId);
 }
