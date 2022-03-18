@@ -1,4 +1,4 @@
-package com.bank.bankaccount.controller.validator;
+package com.bank.bankaccount.validator;
 
 import com.bank.bankaccount.dto.CustomerDTO;
 import com.bank.bankaccount.enums.Error;
