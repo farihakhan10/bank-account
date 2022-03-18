@@ -24,7 +24,7 @@ public class Account extends AbstractAuditing implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "account_type", nullable = false)
+    @Column(nullable = false)
     private String accountType;
 
     @Column(name = "is_active")
@@ -33,9 +33,8 @@ public class Account extends AbstractAuditing implements Serializable {
     @Column(name = "title")
     private String title;
 
-    @Column(name="account_no")
     @GeneratedValue
-    private String accountNo;
+    private Long accountNo;
 
     @NotNull
     @Size(max = 20)
@@ -46,8 +45,11 @@ public class Account extends AbstractAuditing implements Serializable {
     @NotNull
     private Customer customer;
 
-    @OneToMany(mappedBy = "account")
-    private List<Transaction> transactions;
+    @OneToMany(mappedBy = "toAccount")
+    private List<Transaction> payeeTxns;
+
+    @OneToMany(mappedBy = "fromAccount")
+    private List<Transaction> payerTxns;
 
     @NotNull
     @Column(name="currency")
@@ -60,6 +62,6 @@ public class Account extends AbstractAuditing implements Serializable {
     public AccountDTO toDTO() {
         return new AccountDTO().toBuilder().accountNo(this.accountNo).accountType(this.accountType).balance(this.balance)
                 .currency(this.currency).isActive(this.isActive.equals('Y')).status(this.status).title(this.title)
-                .customerId(this.customer.getId()).build();
+                .customer(this.customer).build();
     }
 }

@@ -1,7 +1,10 @@
 package com.bank.bankaccount.dto;
 
+import com.bank.bankaccount.model.Customer;
+import com.bank.bankaccount.model.Transaction;
 import lombok.*;
 
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,9 +17,10 @@ public class AccountDTO {
     private String accountType;
     private Boolean isActive;
     private String title;
-    private String accountNo;
+    private Long accountNo;
     private String status;
-    private Long customerId;
+    private Customer customer;
+    private List<Transaction> txns;
     private String currency;
     private Double balance;
 }
