@@ -13,14 +13,12 @@ import java.math.BigDecimal;
 @Builder(toBuilder = true)
 @RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "transactions")
 public class Transaction extends AbstractAuditing implements Serializable {
 
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

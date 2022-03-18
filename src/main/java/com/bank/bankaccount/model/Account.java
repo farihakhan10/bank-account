@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 @ToString
 @RequiredArgsConstructor
 @Builder(toBuilder = true)
-@NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
@@ -45,7 +44,7 @@ public class Account extends AbstractAuditing implements Serializable {
     @Column(name = "status", length = 20, nullable = false)
     private String status;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @NotNull
     private Customer customer;
 

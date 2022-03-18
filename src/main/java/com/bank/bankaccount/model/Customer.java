@@ -4,12 +4,17 @@ import com.bank.bankaccount.dto.CustomerDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,7 +24,7 @@ import java.time.LocalDate;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "customers")
-public class Customer extends AbstractAuditing implements Serializable {
+public class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +35,6 @@ public class Customer extends AbstractAuditing implements Serializable {
     @Size(max = 20)
     @Column(name = "status", length = 20, nullable = false)
     private String status;
-
-    @Size(max = 80)
-    @Column(name = "email", length = 80)
-    private String email;
 
     @Column(name = "mobile_no")
     private String mobileNo;
@@ -48,11 +49,27 @@ public class Customer extends AbstractAuditing implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "dob")
-    private LocalDate dob;
+    @OneToMany(mappedBy = "customer")
+    private List<Account> accounts;
+
+    @CreatedDate
+    @Column(name = "created_on")
+    private LocalDateTime creationDate;
+
+    @CreatedBy
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @LastModifiedDate
+    @Column(name = "updated_on")
+    private LocalDateTime updatedDate;
+
+    @LastModifiedBy
+    @Column(name = "updated_by")
+    private String updatedBy;
 
     public CustomerDTO toDTO() {
-        return new CustomerDTO().toBuilder().id(id).status(status).email(email).mobileNo(mobileNo)
-                .gender(gender).firstName(firstName).lastName(lastName).dob(dob).build();
+        return new CustomerDTO().toBuilder().id(id).status(status).mobileNo(mobileNo)
+                .gender(gender).firstName(firstName).lastName(lastName).build();
     }
 }
