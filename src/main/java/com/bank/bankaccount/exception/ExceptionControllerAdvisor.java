@@ -26,6 +26,13 @@ public class ExceptionControllerAdvisor {
     @ExceptionHandler(BankAccountCustomException.class)
     public ResponseEntity<ErrorInfo> handleCustomException(BankAccountCustomException exception) {
         log.error("Custom exception occurred with errors: {}", exception.getMsg());
-        return new ResponseEntity<>(new ErrorInfo(exception.getCode(), exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(new ErrorInfo(exception.getCode(), exception.getMsg()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ErrorInfo> handleNotFoundException(NotFoundException exception) {
+        log.error("Custom exception occurred with errors: {}", exception.getMsg());
+        return new ResponseEntity<>(new ErrorInfo(exception.getCode(), exception.getMsg()), HttpStatus.NOT_FOUND);
     }
 }
