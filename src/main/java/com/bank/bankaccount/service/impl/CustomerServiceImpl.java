@@ -28,21 +28,30 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDTO getCustomerById(Long customerId) {
 
-        log.info("Validating Customer id:{}", customerId);
-        if(customerId == null){
-            throw new ValidationException(String.format(Error.ARG_REQUIRED.getMsg(), "customerId"));
-        }
+        validateCustomerId(customerId);
 
+        CustomerDTO customerDTO = getCustomer(customerId);
+        // get all customer transactions
+        transactionService.getCustomerTransactions(customerDTO);
+
+        log.info("Success get Customer by id:{}", customerId);
+        return customerDTO;
+    }
+
+    private CustomerDTO getCustomer(Long customerId) {
+        log.info("Validate Customer id:{}", customerId);
         Optional<Customer> customer = customerRepository.findById(customerId);
         if(customer.isEmpty())
             throw new NotFoundException(Error.NOT_FOUND.getCode(), String.format(Error.NOT_FOUND.getMsg(), "Customer"));
 
-        CustomerDTO customerDTO = customer.get().toDTO();
-        // get all customer transactions
-        transactionService.getCustomerTransactions(customerDTO);
+        return customer.get().toDTO();
+    }
 
-        log.info("Success validating Customer id:{}", customerId);
-        return customerDTO;
+    private void validateCustomerId(Long customerId) {
+        log.info("Validating Customer by id:{}", customerId);
+        if(customerId == null){
+            throw new ValidationException(String.format(Error.ARG_REQUIRED.getMsg(), "customerId"));
+        }
     }
 
 }

@@ -16,6 +16,12 @@ public class CustomerController {
 
     @Autowired private CustomerService customerService;
 
+    /**
+     * Displays the Customer account details
+     * @param id customer id of existing customer
+     * @return customer details with accounts
+     * @throws NotFoundException if no customer with given id exists
+     */
     @GetMapping("/customer/{id}")
     public ResponseEntity<ApiResponse<CustomerDTO>> getCustomerDetailsByCustomerId (
             @PathVariable Long id) throws NotFoundException {

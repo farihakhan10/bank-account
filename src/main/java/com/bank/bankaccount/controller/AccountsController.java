@@ -20,6 +20,13 @@ public class AccountsController {
 
     @Autowired private AccountsService accountsService;
 
+    /**
+     * Create current account of the given customer and deposits initial balance in the account
+     * @param customerID of existing customer
+     * @param initialCredit initial deposit amount
+     * @return account details
+     * @throws BankAccountCustomException in case of eny error
+     */
     @PostMapping("/accounts/current")
     public ResponseEntity<ApiResponse<AccountDTO>> createCurrentAccountByCustomerId (
             @RequestParam("customerID") @NotNull Long customerID, @RequestParam("initialCredit") Double initialCredit)
