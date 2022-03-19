@@ -1,5 +1,6 @@
 package com.bank.bankaccount.model;
 
+import com.bank.bankaccount.dto.AccountDTO;
 import com.bank.bankaccount.dto.CustomerDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -15,6 +16,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -69,7 +71,9 @@ public class Customer implements Serializable {
     private String updatedBy;
 
     public CustomerDTO toDTO() {
+        List<AccountDTO> accountDTOs = this.accounts.stream().map(Account::toDTO).collect(Collectors.toList());
         return new CustomerDTO().toBuilder().id(id).status(status).mobileNo(mobileNo)
-                .gender(gender).firstName(firstName).lastName(lastName).build();
+                .gender(gender).firstName(firstName).lastName(lastName)
+                .accounts(accountDTOs).build();
     }
 }

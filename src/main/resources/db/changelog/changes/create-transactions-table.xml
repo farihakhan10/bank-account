@@ -13,8 +13,8 @@
             <column name="amount" type="DECIMAL(16, 4)"/>
             <column name="currency" type="VARCHAR(20)"/>
             <column name="status" type="VARCHAR(20)"/>
-            <column name="fromAccount" type="INT"/>
-            <column name="toAccount" type="INT"/>
+            <column name="from_account_id" type="INT"/>
+            <column name="to_account_id" type="INT"/>
 
             <!--<column name="fee" type="DECIMAL(16, 4)"/>
             <column name="from_account_id" type="VARCHAR(1)"/>

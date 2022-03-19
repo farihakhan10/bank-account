@@ -16,6 +16,9 @@ public interface AccountsRepository extends JpaRepository<Account, Long>, JpaSpe
     @Query("select a from Account a where a.accountNo = :accountNo and a.isActive = 'Y'")
     Optional<Account> findByAccountNo(@Param("accountNo") Long accountNo);
 
+    @Query("select a from Account a where a.id = :accountId and a.isActive = 'Y'")
+    Optional<Account> findByAccountId(@Param("accountId") Long accountId);
+
     @Query("select a from Account a where a.customer.id =:customerId and a.isActive ='Y'")
     Optional<List<Account>> findByCustomerID(@Param("customerId") Long customerId);
 
@@ -24,4 +27,7 @@ public interface AccountsRepository extends JpaRepository<Account, Long>, JpaSpe
 
     @Query("select a.balance from Account a where a.accountNo = :accountNo and a.isActive = 'Y'")
     Double getAccountBalance(@Param("accountNo") Long accountNo);
+
+    @Query("select a.accountNo from Account a where a.id = :id and a.isActive = 'Y'")
+    Long getAccountNoById(@Param("id") Long id);
 }

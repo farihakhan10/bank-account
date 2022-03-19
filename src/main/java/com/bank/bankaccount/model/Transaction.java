@@ -1,5 +1,6 @@
 package com.bank.bankaccount.model;
 
+import com.bank.bankaccount.dto.TransactionDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
@@ -15,7 +16,7 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "transactions")
-public class Transaction extends AbstractAuditing implements Serializable {
+public class Transaction implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +36,16 @@ public class Transaction extends AbstractAuditing implements Serializable {
     private String currency;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @NotNull
     private Account fromAccount;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @NotNull
     private Account toAccount;
+
+    public TransactionDTO toDTO() {
+        return new TransactionDTO().toBuilder().id(this.id).status(this.status).transactionType(this.txnType)
+                .amount(this.amount).currency(this.currency).fromAccountNo(fromAccount.getAccountNo())
+                .toAccountNo(this.toAccount.getAccountNo()).build();
+    }
 }

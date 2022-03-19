@@ -18,7 +18,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "accounts")
-public class Account extends AbstractAuditing implements Serializable {
+public class Account implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,8 +60,9 @@ public class Account extends AbstractAuditing implements Serializable {
     private Double balance;
 
     public AccountDTO toDTO() {
+
         return new AccountDTO().toBuilder().accountNo(this.accountNo).accountType(this.accountType).balance(this.balance)
                 .currency(this.currency).isActive(this.isActive.equals('Y')).status(this.status).title(this.title)
-                .customer(this.customer).build();
+                /*.customer(this.customer.toDTO())*/.build();
     }
 }

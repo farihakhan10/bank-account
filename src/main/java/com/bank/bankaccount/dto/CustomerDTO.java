@@ -3,6 +3,8 @@ package com.bank.bankaccount.dto;
 import com.bank.bankaccount.model.Customer;
 import lombok.*;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -17,6 +19,7 @@ public class CustomerDTO {
     private String gender;
     private String firstName;
     private String lastName;
+    private List<AccountDTO> accounts;
 
     public Customer toEntity() {
         return new Customer().toBuilder().id(id).status(status).mobileNo(mobileNo)
