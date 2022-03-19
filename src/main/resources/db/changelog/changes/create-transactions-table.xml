@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="admin" id="1003">
+        <createTable tableName="transactions">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="txn_code" type="VARCHAR(255)"/>
+            <column name="txn_type" type="VARCHAR(255)"/>
+            <column name="amount" type="DECIMAL(16, 4)"/>
+            <column name="currency" type="VARCHAR(20)"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="fromAccount" type="INT"/>
+            <column name="toAccount" type="INT"/>
+
+            <!--<column name="fee" type="DECIMAL(16, 4)"/>
+            <column name="from_account_id" type="VARCHAR(1)"/>
+            <column name="from_account_no" type="VARCHAR(255)"/>
+            <column name="from_customer_id" type="VARCHAR(20)"/>
+            <column name="gender" type="VARCHAR(1)"/>
+            <column name="mobile_no" type="VARCHAR(255)"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_on" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(255)"/>
+            <column name="updated_on" type="timestamp"/>-->
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

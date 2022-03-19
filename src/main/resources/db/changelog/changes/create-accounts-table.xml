@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="admin" id="1002">
+        <createTable tableName="accounts">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column autoIncrement="true" name="account_no" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_type" type="VARCHAR(255)"/>
+            <column name="balance" type="DECIMAL(16, 4)"/>
+            <column name="currency" type="VARCHAR(20)"/>
+            <column name="is_active" type="VARCHAR(1)"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="title" type="VARCHAR(20)"/>
+            <column name="customer_id" type="INT"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_on" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(255)"/>
+            <column name="updated_on" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="admin" id="1004">
+        <insert tableName="accounts">
+            <column name="status" value="ACTIVE"/>
+            <column name="account_no" value="11111111"/>
+            <column name="account_type" value="gl"/>
+            <column name="balance" value="999999999999"/>
+            <column name="currency" value="USD"/>
+            <column name="is_active" value="Y"/>
+            <column name="title" value="GL"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="admin" id="1005">
+        <insert tableName="accounts">
+            <column name="status" value="ACTIVE"/>
+            <column name="account_no" value="12345"/>
+            <column name="account_type" value="saving"/>
+            <column name="balance" value="10"/>
+            <column name="currency" value="USD"/>
+            <column name="is_active" value="Y"/>
+            <column name="title" value="Tom Jerry"/>
+            <column name="customer_id" value="1"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
