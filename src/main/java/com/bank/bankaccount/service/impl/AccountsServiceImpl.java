@@ -1,6 +1,5 @@
 package com.bank.bankaccount.service.impl;
 
-import com.bank.bankaccount.Constant;
 import com.bank.bankaccount.dto.AccountDTO;
 import com.bank.bankaccount.dto.CustomerDTO;
 import com.bank.bankaccount.enums.AccountTypes;
@@ -14,6 +13,7 @@ import com.bank.bankaccount.repository.AccountsRepository;
 import com.bank.bankaccount.service.AccountsService;
 import com.bank.bankaccount.service.CustomerService;
 import com.bank.bankaccount.service.TransactionService;
+import com.bank.bankaccount.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

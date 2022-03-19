@@ -1,4 +1,4 @@
-package com.bank.bankaccount;
+package com.bank.bankaccount.util;
 
 public final class Constant {
     private Constant() {
