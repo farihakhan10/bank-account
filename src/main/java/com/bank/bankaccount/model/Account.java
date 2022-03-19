@@ -63,6 +63,6 @@ public class Account implements Serializable {
 
         return new AccountDTO().toBuilder().accountNo(this.accountNo).accountType(this.accountType).balance(this.balance)
                 .currency(this.currency).isActive(this.isActive.equals('Y')).status(this.status).title(this.title)
-                /*.customer(this.customer.toDTO())*/.build();
+                .build();
     }
 }

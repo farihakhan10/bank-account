@@ -7,6 +7,7 @@ import com.bank.bankaccount.exception.BankAccountCustomException;
 import com.bank.bankaccount.service.AccountsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class AccountsController {
             @RequestParam("customerID") @NotNull Long customerID, @RequestParam("initialCredit") Double initialCredit)
             throws BankAccountCustomException {
 
-        return ResponseEntity.ok(new ApiResponse<>(null,
-                accountsService.createAccount(customerID, AccountTypes.CURRENT_ACCOUNT, initialCredit)));
+        return new ResponseEntity<>(new ApiResponse<>(null,
+                accountsService.createAccount(customerID, AccountTypes.CURRENT_ACCOUNT, initialCredit)), HttpStatus.CREATED);
     }
 }
