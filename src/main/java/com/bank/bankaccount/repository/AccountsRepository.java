@@ -13,12 +13,15 @@ import java.util.Optional;
 @Repository
 public interface AccountsRepository extends JpaRepository<Account, Long>, JpaSpecificationExecutor<Account> {
 
-    @Query("select a from Account a where a.account_no = :accountNo and a.isActive = 'Y'")
-    Optional<Account> findByAccountNo(@Param("accountNo") String accountNo);
+    @Query("select a from Account a where a.accountNo = :accountNo and a.isActive = 'Y'")
+    Optional<Account> findByAccountNo(@Param("accountNo") Long accountNo);
 
-    @Query("select a from Accounts a where a.customer.id =:customerId and a.isActive ='Y'")
+    @Query("select a from Account a where a.customer.id =:customerId and a.isActive ='Y'")
     Optional<List<Account>> findByCustomerID(@Param("customerId") Long customerId);
 
-    @Query("select a from Accounts a where a.id=:id and a.accountType=:accountType and a.isActive ='Y'")
-    Account getAccountByIdAndAccountType(@Param("id") String id, @Param("accountType") String accountType);
+    @Query("select a from Account a where a.id=:id and a.accountType=:accountType and a.isActive ='Y'")
+    Optional<List<Account>> getAccountByIdAndAccountType(@Param("id") Long id, @Param("accountType") String accountType);
+
+    @Query("select a.balance from Account a where a.accountNo = :accountNo and a.isActive = 'Y'")
+    Double getAccountBalance(@Param("accountNo") Long accountNo);
 }

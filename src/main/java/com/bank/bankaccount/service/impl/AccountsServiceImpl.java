@@ -10,6 +10,7 @@ import com.bank.bankaccount.model.Account;
 import com.bank.bankaccount.model.Customer;
 import com.bank.bankaccount.repository.AccountsRepository;
 import com.bank.bankaccount.service.AccountsService;
+import com.bank.bankaccount.service.TransactionService;
 import com.bank.bankaccount.validator.CustomerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class AccountsServiceImpl implements AccountsService {
 
     @Autowired private CustomerValidator customerValidator;
     @Autowired private AccountsRepository accountsRepository;
+    @Autowired private TransactionService transactionService;
 
     @Override
     public AccountDTO createAccount(Long customerID, AccountTypes accountType, Double initBalance) throws BankAccountCustomException {
@@ -39,8 +41,13 @@ public class AccountsServiceImpl implements AccountsService {
         accountsRepository.save(account);
 
         if(initBalance>0) {
-            // TODO GL to wallet funds transfer
-
+            // fetch GL account
+            Optional<Account> gl = accountsRepository.findByAccountNo(Constant.DEFAULT_GL);
+            if(gl.isPresent()) {
+                Account glAccount = gl.get();
+                // GL to wallet funds transfer
+                transactionService.performGLToCustomerTransfer(glAccount, account, initBalance);
+            }
         }
         return account.toDTO();
     }
@@ -60,5 +67,14 @@ public class AccountsServiceImpl implements AccountsService {
         return new Account().toBuilder().balance(0.0).accountType(accountType.getValue())
                 .currency(Constant.DEFAULT_CURRENCY).status(Status.ACTIVE.name()).customer(customer).title(title)
                 .isActive('Y').build();
+    }
+
+    public boolean accountExists(Account account) {
+        return accountsRepository.findByAccountNo(account.getAccountNo()).isPresent();
+    }
+
+    @Override
+    public Double checkBalance(Account account) {
+        return accountsRepository.getAccountBalance(account.getAccountNo());
     }
 }

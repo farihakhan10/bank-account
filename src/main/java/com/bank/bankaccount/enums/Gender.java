@@ -1,11 +1,14 @@
 package com.bank.bankaccount.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum Gender {
     MALE('M'),
     FEMALE('F'),
     OTHER('O');
 
-    private char value;
+    private final char value;
     Gender(char value) {
         this.value = value;
     }
