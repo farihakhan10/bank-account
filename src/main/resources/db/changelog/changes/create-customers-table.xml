@@ -20,4 +20,16 @@
         </createTable>
     </changeSet>
 
+    <changeSet author="admin" id="1004">
+        <insert tableName="customers">
+            <column name="status" value="ACTIVE"/>
+            <column name="mobile_no" value="0331234567"/>
+            <column name="gender" value="M"/>
+            <column name="first_name" value="Tom"/>
+            <column name="last_name" value="Jerry"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
 </databaseChangeLog>

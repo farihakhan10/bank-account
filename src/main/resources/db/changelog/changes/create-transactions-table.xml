@@ -8,15 +8,16 @@
             <column autoIncrement="true" name="id" type="INT">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="txn_code" type="VARCHAR(255)"/>
-            <column name="txn_type" type="VARCHAR(255)"/>
+            <column name="txn_code" type="VARCHAR(30)"/>
+            <column name="txn_type" type="VARCHAR(20)"/>
             <column name="amount" type="DECIMAL(16, 4)"/>
             <column name="currency" type="VARCHAR(20)"/>
             <column name="status" type="VARCHAR(20)"/>
             <column name="from_account_id" type="INT"/>
             <column name="to_account_id" type="INT"/>
+            <column name="txn_detail" type="VARCHAR(255)"/>
 
-            <!--<column name="fee" type="DECIMAL(16, 4)"/>
+            <!--<column name="fee" type="DECIMAL(16, 4)"/> txn_detail
             <column name="from_account_id" type="VARCHAR(1)"/>
             <column name="from_account_no" type="VARCHAR(255)"/>
             <column name="from_customer_id" type="VARCHAR(20)"/>

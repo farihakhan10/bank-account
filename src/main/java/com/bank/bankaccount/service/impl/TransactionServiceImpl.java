@@ -31,12 +31,12 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     @Transactional
-    public Long performGLToCustomerTransfer(Account fromAccount, Account toAccount, Double amount) {
+    public Long performGLToCustomerTransfer(Account fromAccount, Account toAccount, Double amount, String txnDetail) {
 
         // validate txn
         validateTransaction(fromAccount, toAccount, amount);
         // prepare debit txn
-        Transaction txn = prepareTransaction(fromAccount, toAccount, amount, TransactionType.GL2C);
+        Transaction txn = prepareTransaction(fromAccount, toAccount, amount, TransactionType.GL2C, txnDetail);
         // debit account balance deduct in case it is customer account
         // credit balance to payee
         creditBalance(toAccount, amount);
@@ -90,9 +90,11 @@ public class TransactionServiceImpl implements TransactionService {
 
     }
 
-    private Transaction prepareTransaction(Account fromAccount, Account toAccount, Double amount, TransactionType type) {
+    private Transaction prepareTransaction(Account fromAccount, Account toAccount, Double amount,
+                                           TransactionType type, String txnDetail) {
 
         return new Transaction().toBuilder().fromAccount(fromAccount).toAccount(toAccount).amount(amount)
-                .currency(toAccount.getCurrency()).txnType(type.name()).status(TransactionStatus.COMPLETED.name()).build();
+                .currency(toAccount.getCurrency()).txnType(type.name()).status(TransactionStatus.COMPLETED.name())
+                .txnDetail(txnDetail).build();
     }
 }

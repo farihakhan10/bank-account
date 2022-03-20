@@ -16,4 +16,5 @@ public class TransactionDTO {
     private String currency;
     private Long fromAccountNo;
     private Long toAccountNo;
+    private String transactionDetail;
 }

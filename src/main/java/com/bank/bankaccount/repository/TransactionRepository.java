@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
-//    @Query(value = "select * from TRANSACTIONS  t where (t.from_account_id = :accountID or t.to_account_id = :accountID) and t.status = 'COMPLETED'", nativeQuery = true)
-    @Query("select t from Transaction t where t.fromAccount = :accountID or t.toAccount = :accountID and t.status = 'COMPLETED'")
+    @Query(value = "SELECT * FROM TRANSACTIONS where (from_account_id = :accountID or to_account_id = :accountID) and status = 'COMPLETED'", nativeQuery = true)
+//    @Query("select t from Transaction t where t.fromAccount = :accountID or t.toAccount = :accountID and t.status = 'COMPLETED'")
     List<Transaction> getAccountTransactions(@Param("accountID") Long accountID);
 
 }

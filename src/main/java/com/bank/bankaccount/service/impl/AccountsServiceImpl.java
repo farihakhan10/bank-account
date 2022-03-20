@@ -58,7 +58,7 @@ public class AccountsServiceImpl implements AccountsService {
         if(gl.isPresent()) {
             Account glAccount = gl.get();
             // GL to wallet funds transfer
-            transactionService.performGLToCustomerTransfer(glAccount, account, initBalance);
+            transactionService.performGLToCustomerTransfer(glAccount, account, initBalance, Constant.INITIAL_DEPOSIT);
         }
     }
 

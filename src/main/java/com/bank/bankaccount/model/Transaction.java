@@ -35,6 +35,9 @@ public class Transaction implements Serializable {
     @Column(name = "currency")
     private String currency;
 
+    @Column(name = "txn_detail")
+    private String txnDetail;
+
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @NotNull
     private Account fromAccount;
@@ -46,6 +49,6 @@ public class Transaction implements Serializable {
     public TransactionDTO toDTO() {
         return new TransactionDTO().toBuilder().id(this.id).status(this.status).transactionType(this.txnType)
                 .amount(this.amount).currency(this.currency).fromAccountNo(fromAccount.getAccountNo())
-                .toAccountNo(this.toAccount.getAccountNo()).build();
+                .toAccountNo(this.toAccount.getAccountNo()).transactionDetail(this.txnDetail).build();
     }
 }
