@@ -1,7 +1,6 @@
 package com.bank.bankaccount.service.impl;
 
 import com.bank.bankaccount.dto.CustomerDTO;
-import com.bank.bankaccount.dto.TransactionDTO;
 import com.bank.bankaccount.enums.Error;
 import com.bank.bankaccount.exception.NotFoundException;
 import com.bank.bankaccount.model.Customer;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ValidationException;
-import java.util.List;
 import java.util.Optional;
 
 @Slf4j

@@ -16,17 +16,6 @@
             <column name="from_account_id" type="INT"/>
             <column name="to_account_id" type="INT"/>
             <column name="txn_detail" type="VARCHAR(255)"/>
-
-            <!--<column name="fee" type="DECIMAL(16, 4)"/> txn_detail
-            <column name="from_account_id" type="VARCHAR(1)"/>
-            <column name="from_account_no" type="VARCHAR(255)"/>
-            <column name="from_customer_id" type="VARCHAR(20)"/>
-            <column name="gender" type="VARCHAR(1)"/>
-            <column name="mobile_no" type="VARCHAR(255)"/>
-            <column name="created_by" type="VARCHAR(255)"/>
-            <column name="created_on" type="timestamp"/>
-            <column name="updated_by" type="VARCHAR(255)"/>
-            <column name="updated_on" type="timestamp"/>-->
         </createTable>
     </changeSet>
 

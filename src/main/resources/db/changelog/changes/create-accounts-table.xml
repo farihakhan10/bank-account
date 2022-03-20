@@ -18,10 +18,6 @@
             <column name="status" type="VARCHAR(20)"/>
             <column name="title" type="VARCHAR(20)"/>
             <column name="customer_id" type="INT"/>
-            <!--<column name="created_by" type="VARCHAR(255)"/>
-            <column name="created_on" type="timestamp"/>
-            <column name="updated_by" type="VARCHAR(255)"/>
-            <column name="updated_on" type="timestamp"/>-->
         </createTable>
     </changeSet>
 
@@ -34,8 +30,6 @@
             <column name="currency" value="USD"/>
             <column name="is_active" value="Y"/>
             <column name="title" value="GL"/>
-            <!--<column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
-            <column name="created_by" value="System"/>-->
         </insert>
     </changeSet>
 

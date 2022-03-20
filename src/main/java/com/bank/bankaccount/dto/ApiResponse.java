@@ -2,7 +2,6 @@ package com.bank.bankaccount.dto;
 
 import java.util.List;
 
-//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
 
     private List<ErrorInfo> errors;

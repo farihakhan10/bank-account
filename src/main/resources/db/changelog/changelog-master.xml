@@ -6,6 +6,5 @@
     <include file="/db/changelog/changes/create-customers-table.xml"/>
     <include file="/db/changelog/changes/create-accounts-table.xml"/>
     <include file="/db/changelog/changes/create-transactions-table.xml"/>
-    <!--<include file="/db/changelog/changes/create-new-customers.xml"/>-->
 
 </databaseChangeLog>

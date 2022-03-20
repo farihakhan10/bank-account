@@ -47,14 +47,14 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void getCustomerTransactions(CustomerDTO customer) {
+    public CustomerDTO getCustomerTransactions(CustomerDTO customer) {
 
         for (AccountDTO acc :
                 customer.getAccounts()) {
             List<TransactionDTO> txns = new ArrayList<>(getAccountTransactions(acc.getId()));
             acc.setTransactions(txns);
         }
-
+        return customer;
     }
 
     private List<TransactionDTO> getAccountTransactions(Long accountId) {
