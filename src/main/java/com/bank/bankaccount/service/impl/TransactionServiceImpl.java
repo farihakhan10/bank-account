@@ -11,7 +11,6 @@ import com.bank.bankaccount.model.Account;
 import com.bank.bankaccount.model.Transaction;
 import com.bank.bankaccount.repository.AccountsRepository;
 import com.bank.bankaccount.repository.TransactionRepository;
-import com.bank.bankaccount.service.AccountsService;
 import com.bank.bankaccount.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 public class TransactionServiceImpl implements TransactionService {
 
     @Autowired TransactionRepository transactionRepository;
-    @Autowired AccountsService accountsService;
     @Autowired AccountsRepository accountsRepository;
 
     @Override
@@ -85,9 +84,13 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     private void validateAccount(Account account, String errorMag) {
-        if(!accountsService.accountExists(account.toDTO()))
+        if(getAccount(account.getId()).isEmpty())
             throw new BankAccountCustomException(Error.INVALID.getCode(), String.format(Error.INVALID.getMsg(), errorMag));
 
+    }
+
+    private Optional<Account> getAccount(Long accountId) {
+        return accountsRepository.findById(accountId);
     }
 
     private Transaction prepareTransaction(Account fromAccount, Account toAccount, Double amount,
