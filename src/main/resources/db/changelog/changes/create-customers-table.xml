@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="admin" id="1001">
+        <createTable tableName="customers">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="gender" type="VARCHAR(1)"/>
+            <column name="mobile_no" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_on" type="timestamp"/>
+            <column name="updated_by" type="VARCHAR(255)"/>
+            <column name="updated_on" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="admin" id="1004">
+        <insert tableName="customers">
+            <column name="status" value="ACTIVE"/>
+            <column name="mobile_no" value="0331234567"/>
+            <column name="gender" value="M"/>
+            <column name="first_name" value="Tom"/>
+            <column name="last_name" value="Jerry"/>
+            <column name="created_on" valueDate="CURRENT_TIMESTAMP()"/>
+            <column name="created_by" value="System"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
