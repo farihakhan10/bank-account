@@ -23,5 +23,5 @@ Install JDK 11 on your machine
 - Test the API for creating current account for existing customer
   - In accounts-controller, you can test the the **createCurrentAccountByCustomerId** API by providing customerId and initialCredit. Note: Customer with customerId=1 is created by default for testing purpose.
 - Test the API to get customer details
-  - In customer-controller, you can test the **createCurrentAccountByCustomerId** API by providing customerId
+  - In customer-controller, you can test the **getCustomerDetailsByCustomerId** API by providing customerId
 - You can check the data populated in the H2 database at runtime
