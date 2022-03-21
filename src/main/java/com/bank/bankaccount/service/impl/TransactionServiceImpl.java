@@ -83,9 +83,9 @@ public class TransactionServiceImpl implements TransactionService {
 
     }
 
-    private void validateAccount(Account account, String errorMag) {
+    private void validateAccount(Account account, String errorMsg) {
         if(getAccount(account.getId()).isEmpty())
-            throw new BankAccountCustomException(Error.INVALID.getCode(), String.format(Error.INVALID.getMsg(), errorMag));
+            throw new BankAccountCustomException(Error.INVALID.getCode(), String.format(Error.INVALID.getMsg(), errorMsg));
 
     }
 
